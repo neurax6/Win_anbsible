@@ -1,0 +1,8 @@
+---
+  - name: Ping test for windows machine
+    hosts: all
+    become: false
+    gather_facts: false
+    task:
+      -name: pingtest
+       win_ping:
