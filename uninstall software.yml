@@ -1,5 +1,5 @@
 ---
-- hosts: win
+- hosts: all
   tasks:
    - name: Uninstall 7-Zip from the exe
      win_package:

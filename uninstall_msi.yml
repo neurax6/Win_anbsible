@@ -1,6 +1,6 @@
 ---
   - name: UnInstalling Apache MSI
-    hosts: win
+    hosts: all
     tasks:
       - name: UnInstall MSI
         win_package:
