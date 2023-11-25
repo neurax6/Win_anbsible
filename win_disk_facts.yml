@@ -11,7 +11,7 @@
   - name: Convert first system disk into various formats
     debug:
       msg: '{{ disksize_gib }} vs {{ disksize_gib_human }}'
-    vars:
+      vars:
       # Get first system disk
       disk: '{{ ansible_facts.disks|selectattr("system_disk")|first }}'
 
