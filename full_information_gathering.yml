@@ -1,6 +1,6 @@
 ---
 - name: Gather Extensive Windows System Information
-  hosts: windows_servers
+  hosts: all
   gather_facts: no
 
   tasks:
