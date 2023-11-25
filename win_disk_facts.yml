@@ -2,6 +2,6 @@
   - hosts: win
     tasks:
   - name: Get disk facts
-    win_command: wmic cpu get caption, deviceid, name, numberofcores, maxclockspeed, status
+    community.windows.win_command: wmic cpu get caption, deviceid, name, numberofcores, maxclockspeed, status
     register: usage
   - debug: msg="{{ usage.stdout }}"
