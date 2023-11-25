@@ -6,7 +6,7 @@
       - name: Download the Apache installer
         win_get_url:
           url: 'https://www.7-zip.org/a/7z2301-x64.exe'
-          dest: 'C:\Users\Administrator\Downloads\7zip.exe
+          dest: 'C:\Users\Administrator\Downloads\7zip.exe'
 
       - name: Install MSI
         win_package: 
