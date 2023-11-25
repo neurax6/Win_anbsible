@@ -1,7 +1,7 @@
 ---
 - name: Gather Extensive Windows System Information with Disk and Health Details
   hosts: all
-  gather_facts: no
+  gather_facts: yes
 
   tasks:
     - name: Gather full set of system facts
@@ -14,10 +14,6 @@
       community.windows.win_disk_facts:
       register: disk_info
 
-    - name: Check system health (example using a script or command)
-      ansible.windows.win_command: "your_health_check_script_or_command"
-      register: health_check
-
     - name: Display all gathered system facts
       debug:
         var: full_system_info.ansible_facts
@@ -26,6 +22,3 @@
       debug:
         var: disk_info.disks
 
-    - name: Display system health information
-      debug:
-        var: health_check.stdout
