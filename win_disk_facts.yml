@@ -1,21 +1,20 @@
 ---
 - hosts: all
-  gather_facts: false
+  gather_facts: true
   tasks: 
-  - name: Get disk facts
-    community.windows.win_disk_facts:
+    - name: Get disk facts
+      community.windows.win_disk_facts:
 
-  - name: Output first disk size
-    debug:
-      var: ansible_facts.disks[0].size
+    - name: Output first disk size
+      debug:
+        var: ansible_facts.disks[0].size
 
-  - name: Convert first system disk into various formats
-    debug:
-      msg: '{{ disksize_gib }} vs {{ disksize_gib_human }}'
-      vars:
-      # Get first system disk
-      disk: '{{ ansible_facts.disks|selectattr("system_disk")|first }}'
+    - name: Set disk variables
+      set_fact:
+        disk: "{{ ansible_facts.disks | selectattr('system_disk', 'equalto', true) | first }}"
+        disksize_gib_human: "{{ disk.size | filesizeformat(true) }}"
+        disksize_gib: "{{ (disk.size / (1024 ** 3)) | round(2) }} GiB"
 
-      # Show disk size in Gibibytes
-      disksize_gib_human: '{{ disk.size|filesizeformat(true) }}' 
-      disksize_gib: '{{ (disk.size/1024|pow(3))|round|int }} GiB'
+    - name: Convert first system disk into various formats
+      debug:
+        msg: "Disk size in GiB: {{ disksize_gib }}, Human-readable format: {{ disksize_gib_human }}"
