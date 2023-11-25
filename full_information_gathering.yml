@@ -1,0 +1,15 @@
+---
+- name: Gather Extensive Windows System Information
+  hosts: windows_servers
+  gather_facts: no
+
+  tasks:
+    - name: Gather full set of facts from Windows hosts
+      ansible.windows.setup:
+        gather_subset:
+          - all
+      register: full_system_info
+
+    - name: Display all gathered facts
+      debug:
+        var: full_system_info.ansible_facts
