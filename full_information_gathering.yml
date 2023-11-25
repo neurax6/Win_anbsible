@@ -11,7 +11,7 @@
       register: full_system_info
 
     - name: Get detailed disk information
-      ansible.windows.win_disk_facts:
+      ommunity.windows.win_disk_facts:
       register: disk_info
 
     - name: Check system health (example using a script or command)
