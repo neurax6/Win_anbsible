@@ -1,13 +1,9 @@
 ---
-- name: List installed Ansible Galaxy collections
-  hosts: all
+- name: Install community.windows collection
+  hosts: localhost
   gather_facts: no
   tasks:
-    - name: List installed collections
+    - name: Install community.windows collection from Ansible Galaxy
       ansible.builtin.command:
-        cmd: ansible-galaxy collection list
-      register: collections_list
-
-    - name: Show collections list
-      ansible.builtin.debug:
-        var: collections_list.stdout_lines
+        cmd: ansible-galaxy collection install community.windows
+      delegate_to: localhost
