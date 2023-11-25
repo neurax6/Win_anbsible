@@ -1,0 +1,9 @@
+---
+- name: Install ansible.windows collection
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Install ansible.windows collection
+      ansible.builtin.command:
+        cmd: ansible-galaxy collection install ansible.windows
+      delegate_to: localhost
